@@ -1,49 +1,22 @@
-const db = require("../models");
-const User = db.user;
+const db = require("../models")
+const User = db.user
 
 exports.resetPassword = (req, res) => {
     User.update({
         password: req.params.Password
-    }, {
-    where: {
-        first_name: req.params.FirstName,
-        last_name: req.params.LastName,
-        patronymic: req.params.Patronymic,
-        login: req.params.Login,
-    }
-    }).then(res => {
-        console.log(res);
-    }).catch(err => {
-        console.log(err);
-    })
-};
-
-// Это получается расходы
-exports.findAllExpenses = ( req,res ) => {
-    User.findAll( { } )
-    .then(data=>{
-        res.send(data);
-    })
-    .catch(err=>{
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Picture"
-        });
-    });
-};
-
-// А это доходы
-exports.findAllIncome = ( req,res ) => {
-    User.findAll( { } )
-    .then(data=>{
-        res.send(data);
-    })
-    .catch(err=>{
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Picture"
-        });
-    });
+    },
+        {
+            where: {
+                first_name: req.params.FirstName,
+                last_name: req.params.LastName,
+                patronymic: req.params.Patronymic,
+                login: req.params.Login,
+            }
+        }).then(data => {
+            res.send(data)
+        }).catch(err => {
+            res.send(err)
+        })
 };
 
 exports.autorization = (req, res) => {
@@ -54,13 +27,32 @@ exports.autorization = (req, res) => {
                 password: req.params.Password
             }
         })
-        .then(data=>{
-            res.send(data);
-            console.log(data)
-        }).catch(err=>{
-        res.status(500).send({
-            message:
-            err.message || "Some error occurred while retrieving Picture"
-        });
-    });
+        .then(data => {
+            res.send(data)
+        }).catch(err => {
+            res.send(err)
+        })
 }
+
+// два метода в другие контроллеры и создать модели для них
+// Это получается расходы
+/*exports.findAllExpenses = (req, res) => {
+    .findAll({})
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
+
+// А это доходы
+exports.findAllIncome = (req, res) => {
+    .findAll({})
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}*/
