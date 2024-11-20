@@ -1,0 +1,13 @@
+  module.exports={
+    HOST:"172.21.16.116",
+    USER:"prb01",
+    PASSWORD:"prb01",
+    DB:"user1",
+    dialect:"postgres",
+    pool:{
+        max:5,
+        min:0,
+        acquire:30000,
+        idle:1000
+    }
+};
